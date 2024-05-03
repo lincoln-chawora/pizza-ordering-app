@@ -1,3 +1,5 @@
+import { getAddress } from '../../services/apiGeocoding.js';
+
 function getPosition() {
   return new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject);
