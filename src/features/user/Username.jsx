@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
+import { getUsername } from './userSlice.js';
 
 export function Username() {
-  const username = useSelector((state) => state.user.username);
+  const username = useSelector(getUsername);
 
   if (!username) return null;
   return (
