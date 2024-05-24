@@ -4,6 +4,7 @@ import Menu, { loader as menuLoader } from "./features/menu/Menu.jsx";
 import Cart from "./features/cart/Cart.jsx";
 import Order, { loader as orderLoader } from "./features/order/Order.jsx";
 import CreateOrder, {action as createOrderAction} from "./features/order/CreateOrder.jsx";
+import {action as updateOrderAction} from "./features/order/UpdateOrder.jsx";
 import {AppLayout} from "./ui/AppLayout";
 import Error from "./ui/Error";
 
@@ -30,10 +31,23 @@ const router = createBrowserRouter([
                 element: <Order />,
                 loader: orderLoader,
                 errorElement: <Error />,
+                action: updateOrderAction
             }
         ]
     },
 ])
+
+/*
+@todo: EXTRA FEATURES.
+
+That's nice to hear! I have a few suggestions that I initially wanted to implement but then cut out. However, for these suggestions to work, you would have to build your own API first, maybe using Supabase, because they would need additional fields in the API response. With that being said, here are 3 suggestions:
+
+1) On order, you could let the user define a PIN number for the order. Then, in the page that displays the final order, the user could be allowed to actually edit the order during the first 5 minutes after submitting it, but ONLY if they input the correct PIN number (otherwise, users could edit orders from other people). This would require a PIN to be sent to the API request on order.
+
+2) You could add the ability to add or remove ingredients for pizzas in the cart. Again, this would require a change in the API.
+
+3) You could persist the cart data using "Redux persist" like in this tutorial: https://blog.logrocket.com/persist-state-redux-persist-redux-toolkit-react/
+ */
 function App() {
   return (
       <RouterProvider router={router} />

@@ -69,7 +69,7 @@ function CreateOrder() {
             />
             {!position.latitude && !position.longitude &&
               <span className="absolute right-[3px] bottom-[3px] z-50">
-                <Button disabled={isLoadingAddress} type="small" onClick={(e) => handleGetPosition(e)}>Get position</Button>
+                <Button disabled={isLoadingAddress} type="small" onClick={(e) => handleGetPosition(e)}>{isLoadingAddress ? 'Getting address...' : 'Get address'}</Button>
               </span>
             }
           </div>
