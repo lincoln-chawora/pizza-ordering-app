@@ -33,13 +33,29 @@ const cartSlice = createSlice({
       item.totalPrice = item.quantity * item.unitPrice;
       if (item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action);
     },
+    updateItemIngredients(state, action) {
+      // Find updated item.
+      const updatedItem = state.cart.find(item => item.pizzaId === action.payload.pizzaId)
+
+      // Get current ingredients and the updated ingredients from the payload.
+      const currentIngredients = updatedItem.ingredients;
+      const updatedIngredients = action.payload.updatedIngredients;
+
+      // Separate added and removed ingredients into new arrays.
+      const addedIngredients = updatedIngredients.filter(x => !currentIngredients.includes(x));
+      const removedIngredients = currentIngredients.filter(x => !updatedIngredients.includes(x));
+
+      // Update state with the added and removed ingredients.
+      updatedItem.addIngredients = addedIngredients;
+      updatedItem.removeIngredients = removedIngredients;
+    },
     clearCart(state) {
       state.cart = [];
     },
   }
 })
 
-export const {addItem, deleteItem, increaseItemQuantity, decreaseItemQuantity, clearCart} = cartSlice.actions;
+export const {addItem, deleteItem, increaseItemQuantity, decreaseItemQuantity, updateItemIngredients, clearCart} = cartSlice.actions;
 
 // Selectors. @todo: Optimise using 'reselct' redux library.
 export const getTotalCartPrice = (state) => state.cart.cart.reduce((sum, pizza) => sum + pizza.totalPrice, 0);

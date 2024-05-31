@@ -1,4 +1,5 @@
 const API_URL = 'https://react-fast-pizza-api.onrender.com/api';
+const LOCAL_API_URL = 'http://localhost:8000';
 
 export async function getMenu() {
   const res = await fetch(`${API_URL}/menu`);
@@ -11,16 +12,17 @@ export async function getMenu() {
 }
 
 export async function getOrder(id) {
-  const res = await fetch(`${API_URL}/order/${id}`);
+  const res = await fetch(`${LOCAL_API_URL}/order/${id}`);
+
   if (!res.ok) throw Error(`Couldn't find order #${id}`);
 
-  const { data } = await res.json();
+  const data = await res.json();
   return data;
 }
 
 export async function createOrder(newOrder) {
   try {
-    const res = await fetch(`${API_URL}/order`, {
+    const res = await fetch(`${LOCAL_API_URL}/order`, {
       method: 'POST',
       body: JSON.stringify(newOrder),
       headers: {
@@ -29,7 +31,7 @@ export async function createOrder(newOrder) {
     });
 
     if (!res.ok) throw Error();
-    const { data } = await res.json();
+    const data = await res.json();
     return data;
   } catch {
     throw Error('Failed creating your order');
@@ -38,7 +40,7 @@ export async function createOrder(newOrder) {
 
 export async function updateOrder(id, updateObj) {
   try {
-    const res = await fetch(`${API_URL}/order/${id}`, {
+    const res = await fetch(`${LOCAL_API_URL}/order/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(updateObj),
       headers: {

@@ -1,7 +1,9 @@
 import { formatCurrency } from '../../utils/helpers';
 
-function OrderItem({ item, isLoadingIngredients, ingredients }) {
-  const { quantity, name, totalPrice } = item;
+function OrderItem({ item }) {
+  const { quantity, name, totalPrice, ingredients, addIngredients, removeIngredients } = item;
+
+  const finalIngredients = ingredients.concat(addIngredients);
 
   return (
     <li className="space-y-1 py-3">
@@ -11,7 +13,15 @@ function OrderItem({ item, isLoadingIngredients, ingredients }) {
         </p>
         <p className="font-bold">{formatCurrency(totalPrice)}</p>
       </div>
-      <p className="text-sm capitalize italic text-stone-500">{isLoadingIngredients ? 'Loading...' : ingredients.join(', ')}</p>
+      <div className="text-sm capitalize italic text-stone-500">{finalIngredients.map((i, idx) => {
+
+        return (
+          <span className={`${removeIngredients.includes(i) && 'line-through'} mr-1`} key={idx}>
+            {i}
+            {idx !== finalIngredients.length - 1 && ','}
+          </span>
+        )
+      })}</div>
     </li>
   );
 }

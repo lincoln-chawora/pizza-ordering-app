@@ -5,12 +5,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, getCart } from './cartSlice.js';
 import EmptyCart from './EmptyCart.jsx';
 import { getUsername } from '../user/userSlice.js';
+import { useFetcher } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function Cart() {
+  const [ingredients, setIngredients] = useState([]);
   const username = useSelector(getUsername);
   const cart = useSelector(getCart);
 
   const dispatch = useDispatch();
+
+  const fetcher = useFetcher();
+
+  useEffect(() => {
+    if (!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu');
+
+    if (fetcher.data) {
+      const uniqueIngredients = [...new Set(fetcher.data.flatMap(pizza => !pizza.soldOut ? pizza.ingredients : []))];
+      setIngredients(uniqueIngredients);
+    }
+  }, [fetcher]);
+
 
   if (!cart.length) return <EmptyCart />
 
@@ -22,7 +37,7 @@ function Cart() {
 
       <ul className="mt-3 divide-y divide-stone-200 border-b">
         {cart.map((item, idx) => (
-          <CartItem item={item} key={idx} />
+          <CartItem item={item} key={idx} isLoadingIngredients={fetcher.state} allIngredients={ingredients} />
         ))}
       </ul>
 
