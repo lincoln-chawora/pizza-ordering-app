@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentQuantityById, updateItemIngredients } from './cartSlice.js';
 import Select from 'react-select';
 import { useState } from 'react';
+import { useNavigation } from 'react-router-dom';
 
 function CartItem({ item, isLoadingIngredients, allIngredients }) {
   const { pizzaId, name, quantity, totalPrice, ingredients } = item;
   const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(pizzaId));
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
 
   const [ingredientsList, setIngredientsList] = useState(ingredients);
 
@@ -31,7 +34,7 @@ function CartItem({ item, isLoadingIngredients, allIngredients }) {
           {quantity}&times; {name}
         </p>
 
-        {isLoadingIngredients === 'loading' ? 'Loading ingredients...' :
+        {isLoadingIngredients === 'loading' || isLoading ? 'Loading ingredients...' :
           <Select defaultValue={convertToOptionList(ingredientsList)}
           isMulti
           onChange={(e) => handleOnChange(e)}

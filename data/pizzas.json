@@ -89,7 +89,7 @@
         }
       ],
       "position": "",
-      "priority": false,
+      "priority": true,
       "estimatedDelivery": "2024-09-11T13:33:27.942Z",
       "orderPrice": 16,
       "priorityPrice": 3.2,
@@ -196,6 +196,75 @@
       "orderPrice": 15,
       "priorityPrice": 3,
       "id": 6
+    },
+    {
+      "customer": "Lincoln",
+      "phone": "4349394",
+      "address": "Not here",
+      "priority": true,
+      "cart": [
+        {
+          "pizzaId": 3,
+          "name": "Romana",
+          "quantity": 1,
+          "unitPrice": 15,
+          "ingredients": [
+            "tomato",
+            "mozzarella",
+            "prosciutto"
+          ],
+          "totalPrice": 15,
+          "addIngredients": [],
+          "removeIngredients": []
+        }
+      ],
+      "position": "",
+      "estimatedDelivery": "2024-09-11T14:28:15.302Z",
+      "orderPrice": 18,
+      "priorityPrice": 3,
+      "id": 7
+    },
+    {
+      "customer": "Todd",
+      "phone": "3535355",
+      "address": "Stamford Bridge",
+      "priority": true,
+      "cart": [
+        {
+          "pizzaId": 3,
+          "name": "Romana",
+          "quantity": 1,
+          "unitPrice": 15,
+          "ingredients": [
+            "tomato",
+            "mozzarella",
+            "prosciutto"
+          ],
+          "totalPrice": 15,
+          "addIngredients": [],
+          "removeIngredients": []
+        },
+        {
+          "pizzaId": 4,
+          "name": "Prosciutto e Rucola",
+          "quantity": 1,
+          "unitPrice": 16,
+          "ingredients": [
+            "tomato",
+            "mozzarella",
+            "prosciutto",
+            "arugula"
+          ],
+          "totalPrice": 16,
+          "addIngredients": [],
+          "removeIngredients": []
+        }
+      ],
+      "position": "",
+      "estimatedDelivery": "2024-09-11T14:56:41.205Z",
+      "orderPrice": 37.2,
+      "priorityPrice": 6.2,
+      "id": 8
     }
   ]
 }

@@ -1,6 +1,6 @@
 import { deliveryTime, isValidPhone } from '../../utils/helpers.js';
 import { createOrder } from '../../services/apiRestaurant.js';
-import store from '../../store.js';
+import {store} from '../../store.js';
 import { clearCart } from '../cart/cartSlice.js';
 import { redirect } from 'react-router-dom';
 

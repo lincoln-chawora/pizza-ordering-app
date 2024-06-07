@@ -49,7 +49,7 @@ That's nice to hear! I have a few suggestions that I initially wanted to impleme
 
 2) ✅ Add the ability to add or remove ingredients for pizzas in the cart.
 
-3) You could persist the cart data using "Redux persist" like in this tutorial: https://blog.logrocket.com/persist-state-redux-persist-redux-toolkit-react/
+3) ✅ Persist the cart data using "Redux persist"
  */
 function App() {
   return (
